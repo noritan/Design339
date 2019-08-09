@@ -30,15 +30,6 @@ void Int_Set_isr(void) {
 int main(void) {
     __enable_irq(); /* 全体の割り込みを許可する */
 
-//    /* セマフォを初期化する */
-//    CY_ASSERT(
-//        Cy_IPC_Sema_Init(
-//            CY_IPC_CHAN_SEMA,
-//            0,
-//            (uint32_t *)0
-//        ) == CY_IPC_SEMA_SUCCESS
-//    );
-
     /* Set 割り込みの初期化 */
     Cy_SysInt_Init(&Int_Set_cfg, Int_Set_isr);
     NVIC_ClearPendingIRQ(Int_Set_cfg.intrSrc);

@@ -13,8 +13,6 @@
 
 #define SEMAPHORE_LED  (8)  /* セマフォの識別番号 */
 
-// uint32 semaphoreStore[4];  /* セマフォの格納庫 */
-
 bool Int_Clear_flag = false;  /* 割り込みありフラグ */
 
 /* Clear 割り込みの処理ルーチン */
@@ -29,15 +27,6 @@ int main(void) {
     /* PWM の起動 */
     PWM1000_Start();
     PWM1005_Start();
-
-//    /* セマフォを初期化する */
-//    CY_ASSERT(
-//        Cy_IPC_Sema_Init(
-//            CY_IPC_CHAN_SEMA,
-//            sizeof(semaphoreStore) * 8,
-//            semaphoreStore
-//        ) == CY_IPC_SEMA_SUCCESS
-//    );
 
     /* Cortex-M4 を叩き起こして CY_CORTEX_M4_APPL_ADDR から実行させる。 */
     Cy_SysEnableCM4(CY_CORTEX_M4_APPL_ADDR); 

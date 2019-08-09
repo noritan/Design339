@@ -13,20 +13,9 @@
 
 #define SEMAPHORE_LED  (8)  /* セマフォの識別番号 */
 
-// uint32 semaphoreStore[4];  /* セマフォの格納庫 */
-
 int main(void)
 {
     __enable_irq(); /* 全体の割り込みを許可する */
-
-//    /* セマフォを初期化する */
-//    CY_ASSERT(
-//        Cy_IPC_Sema_Init(
-//            CY_IPC_CHAN_SEMA,
-//            sizeof(semaphoreStore) * 8,
-//            semaphoreStore
-//        ) == CY_IPC_SEMA_SUCCESS
-//    );
     
     /* Cortex-M4 を叩き起こして CY_CORTEX_M4_APPL_ADDR から実行させる。 */
     Cy_SysEnableCM4(CY_CORTEX_M4_APPL_ADDR); 

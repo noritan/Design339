@@ -17,15 +17,6 @@ int main(void)
 {
     __enable_irq(); /* 全体の割り込みを許可する */
 
-//    /* セマフォを初期化する */
-//    CY_ASSERT(
-//        Cy_IPC_Sema_Init(
-//            CY_IPC_CHAN_SEMA,
-//            0,
-//            (uint32_t *)0
-//        ) == CY_IPC_SEMA_SUCCESS
-//    );
-
     for(;;)
     {
         /* セマフォを獲得する */

@@ -3,7 +3,7 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize" version="5" xml_contents_version="3" name="Design339" persistent="Design339.cywrk" platform="NOT_USED">
-<current_project name=".\LChikaDualCore04.cydsn\LChikaDualCore04.cyprj" />
+<current_project name=".\LChikaDualCore05.cydsn\LChikaDualCore05.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
@@ -11,6 +11,7 @@
 <v>.\LChikaDualCore02.cydsn\LChikaDualCore02.cyprj</v>
 <v>.\LChikaDualCore03.cydsn\LChikaDualCore03.cyprj</v>
 <v>.\LChikaDualCore04.cydsn\LChikaDualCore04.cyprj</v>
+<v>.\LChikaDualCore05.cydsn\LChikaDualCore05.cyprj</v>
 </projects>
 <workspace_id v="d4c41043-679b-4845-9b44-9aa1b22b5b1b" />
 <WriteAppVersionLastSavedWith v="4.2.0.641" />

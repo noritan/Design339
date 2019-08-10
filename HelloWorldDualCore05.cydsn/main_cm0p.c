@@ -12,6 +12,7 @@
 #include <string.h>
 #include "project.h"
 
+#define SEMAPHORE_SENDER        (8) /* メッセージを送信する権利 */
 #define PIPE_CLIENT_UARTTX      (0) /* UART送信用の CLIENT 番号 */
 
 /* 送信バッファの定義 */
@@ -28,11 +29,6 @@ void pipeUartTxCallback(uint32_t *message) {
     strcpy(txBuffer, (char_t *)(&message[1]));
     txCharsLeft = strlen(txBuffer);
     txColumn = 0;
-    
-    /* 処理が終わるまで受け付け停止 */
-    if (txCharsLeft > 0) {
-        Cy_IPC_Pipe_EndpointPause(CY_IPC_EP_CYPIPE_CM0_ADDR);
-    }
 }
 
 int main(void) {
@@ -62,8 +58,10 @@ int main(void) {
             txCharsLeft--;
             
             if (txCharsLeft <= 0) {
-                /* すべて送り出したら受付再開 */
-                Cy_IPC_Pipe_EndpointResume(CY_IPC_EP_CYPIPE_CM0_ADDR);
+                /* すべて送り出したらセマフォを開放する */
+                while (
+                    Cy_IPC_Sema_Clear(SEMAPHORE_SENDER, false) != CY_IPC_SEMA_SUCCESS
+                ) ;
             }
         }
         /* 一文字当たり10msの低速処理 */

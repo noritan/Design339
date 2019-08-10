@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "project.h"
 
+#define SEMAPHORE_SENDER        (8) /* メッセージを送信する権利 */
 #define PIPE_CLIENT_UARTTX      (0) /* UART送信用の CLIENT 番号 */
 
 /* WDT を使った周期割り込み */
@@ -95,7 +96,9 @@ void task1_dispatch(struct Task1Context *context) {
             break;
         case ST_SEND:
             /* フラグが立っている時のみ実行 */
-            if (*(context->flag)) {
+            if (! *(context->flag)) break;
+            /* セマフォを獲得する */
+            if (Cy_IPC_Sema_Set(SEMAPHORE_SENDER, false) == CY_IPC_SEMA_SUCCESS) {
                 /* メッセージを送る */
                 if (
                     Cy_IPC_Pipe_SendMessage(

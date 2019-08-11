@@ -113,6 +113,11 @@ void task1_dispatch(struct Task1Context *context) {
                     context->state = ST_CREATE;
                     /* 割り込みフラグを折る */
                     *(context->flag) = false;
+                } else {
+                   /* メッセージの送信に失敗したので、セマフォを開放する */
+                    while (
+                        Cy_IPC_Sema_Clear(SEMAPHORE_SENDER, false) != CY_IPC_SEMA_SUCCESS
+                    ) ;
                 }
             }
             break;
